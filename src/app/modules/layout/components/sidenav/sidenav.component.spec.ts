@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SideNavComponent } from './sidenav.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
@@ -7,7 +10,7 @@ describe('SideNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideNavComponent],
+      imports: [SideNavComponent, RouterModule.forRoot([]), AngularSvgIconModule.forRoot(), HttpClientModule],
     }).compileComponents();
   });
 
