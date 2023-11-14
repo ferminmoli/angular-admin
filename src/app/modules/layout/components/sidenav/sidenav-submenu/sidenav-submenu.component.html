@@ -1,0 +1,39 @@
+<div
+  class="max-h-0 overflow-hidden pt-1 pl-4 transition-all duration-500"
+  [ngClass]="{
+    hidden: !sideNavService.showSideBar,
+    'max-h-screen': submenu.expanded
+  }">
+  <ul class="text-night-200 flex flex-col pl-2">
+    @for (sub of submenu.children; track sub) {
+    <li>
+      <div
+        class="dark:hover:bg-night-600 flex rounded text-gray-700 hover:bg-gray-100"
+        (click)="toggleMenu(sub)">
+        <ng-container
+          [ngTemplateOutlet]="sub.children ? childMenu : parentMenu"
+          [ngTemplateOutletContext]="{ sub: sub }">
+        </ng-container>
+
+        <ng-template #parentMenu let-sub="sub">
+          <a
+            [routerLink]="sub.route"
+            routerLinkActive="text-primary-600"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="inline-block w-full px-4 py-2 text-xs font-semibold">
+            {{ sub.label }}
+          </a>
+        </ng-template>
+
+        <ng-template #childMenu let-sub="sub">
+          <a
+            class="inline-block w-full cursor-pointer px-4 py-2 text-xs font-semibold">
+            {{ sub.label }}
+          </a>
+        </ng-template>
+      </div>
+      <app-sidenav-submenu [submenu]="sub"></app-sidenav-submenu>
+    </li>
+    }
+  </ul>
+</div>

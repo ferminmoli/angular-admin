@@ -1,0 +1,12 @@
+<div class="flex h-screen w-full overflow-hidden">
+  <app-sidenav></app-sidenav>
+  <div
+    class="dark:bg-night-800 flex grow flex-col content-start overflow-hidden bg-gradient-to-r from-purple-50 to-blue-200">
+    <app-navbar></app-navbar>
+    <div
+      id="main-content"
+      class="scrollbar-thumb-rounded scrollbar-track-rounded dark:scrollbar-thumb-night-700 dark:scrollbar-track-night-800 grow overflow-auto scrollbar-thin scrollbar-thumb-white scrollbar-track-gray-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+@for (menu of (sideNavService.getPagesMenu()); track menu) {
+<div class="pt-4">
+  <ul class="flex flex-col space-y-1">
+    @for (item of menu.items; track item) {
+    <li>
+      <div
+        (click)="toggleMenu(item)"
+        (keyup)="toggleMenu(item)"
+        class="group relative text-gray-800">
+        <div
+          [ngClass]="
+            item.active && !sideNavService.showSideBar ? 'text-primary-600' : ''
+          "
+          class="pointer-events-none absolute m-2">
+          <svg-icon src="{{ item.icon }}" [svgClass]="'h-5 w-5'"> </svg-icon>
+        </div>
+        <ng-container
+          [ngTemplateOutlet]="item.children ? childMenu : parentMenu"
+          [ngTemplateOutletContext]="{ item: item }">
+        </ng-container>
+        <ng-template #parentMenu let-item="item">
+          <div
+            routerLink="{{ item.route }}"
+            class="dark:hover:bg-night-600 flex h-9 cursor-pointer items-center justify-start rounded text-gray-800 hover:bg-gray-100">
+            <a
+              routerLinkActive="text-primary-600"
+              class="ml-10 truncate text-xs font-semibold tracking-wide focus:outline-none">
+              {{ item.label }}
+            </a>
+          </div>
+        </ng-template>
+        <ng-template #childMenu let-item="item">
+          <div
+            class="dark:hover:bg-night-600 flex h-9 cursor-pointer items-center justify-start rounded hover:bg-gray-100">
+            <a
+              class="ml-10 truncate text-xs font-semibold tracking-wide text-gray-800 focus:outline-none">
+              {{ item.label }}
+            </a>
+          </div>
+        </ng-template>
+        @if(!sideNavService.showSideBar) {
+        <div class="fixed w-full">
+          <span
+            class="z-1 dark:text-night-900 absolute left-14 -top-[34px] w-auto min-w-max origin-left scale-0 rounded-md bg-black p-2 text-xs font-bold text-white shadow-md transition-all duration-200 group-hover:scale-100 dark:bg-white">
+            {{ item.label }}
+          </span>
+        </div>
+        }
+      </div>
+      <app-sidenav-submenu [submenu]="item"></app-sidenav-submenu>
+    </li>
+    }
+  </ul>
+</div>
+}
