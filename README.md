@@ -47,6 +47,10 @@ Ensure your system meets the following requirements:
     npm start
     ```
 
+## Showcase
+
+https://angular-admin-phi.vercel.app/pages/sign-up
+
 ## Scripts
 
 - `npm start`: Starts the server in dev mode               
