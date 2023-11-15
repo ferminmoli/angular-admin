@@ -49,7 +49,7 @@ Ensure your system meets the following requirements:
 
 ## Showcase
 
-https://angular-admin-phi.vercel.app/pages/sign-up
+https://angular-admin-phi.vercel.app/
 
 ## Scripts
 
